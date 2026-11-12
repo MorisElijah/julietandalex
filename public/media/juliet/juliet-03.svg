@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+<rect width="1200" height="1500" fill="#d81b86"/>
+<circle cx="950" cy="550" r="260" fill="#fff" opacity=".16"/>
+<circle cx="360" cy="860" r="360" fill="#000" opacity=".12"/>
+<text x="80" y="1380" fill="#fff" font-family="Arial, sans-serif" font-size="92" font-weight="900">JULIET</text>
+<text x="82" y="1460" fill="#fff" font-family="Arial, sans-serif" font-size="34" opacity=".8">PLACEHOLDER MEDIA 3</text>
+</svg>
