@@ -47,6 +47,37 @@ export default function MusicPlayer() {
     return cleanup;
   }, []);
 
+  // Stop the song when the visitor leaves: closing the tab/browser, switching
+  // apps on a phone, or minimising. Phones often keep a "closed" browser alive
+  // in the background, so without this the music would keep playing.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    let resumeOnReturn = false;
+
+    const stop = () => {
+      if (!audio.paused) {
+        resumeOnReturn = true;
+        audio.pause();
+      }
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        stop();
+      } else if (resumeOnReturn) {
+        resumeOnReturn = false;
+        audio.play().catch(() => {});
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pagehide", stop);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pagehide", stop);
+    };
+  }, []);
+
   const toggle = async () => {
     const audio = audioRef.current;
     if (!audio) return;
